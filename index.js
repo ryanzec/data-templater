@@ -78,18 +78,32 @@ dataMasker.isCompiled = function dataMaskerIsMasked(value, mask, maskCharacter) 
 
 dataMasker.compiledIndexToUncompiledIndex = function dataMaskerMaskedIndexToUnmaskedIndex(index, mask, maskCharacter) {
   maskCharacter = maskCharacter || '?';
-  var newIndex = -1;
+  var newIndex = 0;
   var currentIndex = 0;
   var countDown = index;
+  var decreaseIndex = false;
 
-  do {
+  while (countDown >= 0) {
     if (mask[currentIndex] === maskCharacter) {
       newIndex += 1;
+      decreaseIndex = false;
+    //NOTE: need to account for end of string index finding
+    } else if (mask[currentIndex] === undefined) {
+      newIndex += 1;
+      countDown = 0;
+      decreaseIndex = false;
+    } else {
+      //NOTE
+      decreaseIndex = true;
     }
 
     currentIndex += 1;
     countDown -= 1;
-  } while (countDown >= 0)
+  }
+
+  if(decreaseIndex === false) {
+    newIndex -= 1;
+  }
 
   if (newIndex < 0) {
     newIndex = 0;
@@ -100,11 +114,11 @@ dataMasker.compiledIndexToUncompiledIndex = function dataMaskerMaskedIndexToUnma
 
 dataMasker.uncompiledIndexToCompiledIndex = function dataMaskerUnmaskedIndexToMaskedIndex(index, mask, maskCharacter) {
   maskCharacter = maskCharacter || '?';
-  var newIndex = -1;
+  var newIndex = 0;
   var countDown = index;
   var tempBeginningIndex = 0;
 
-  do {
+  while (countDown >= 0) {
     if (mask[newIndex] === maskCharacter) {
       countDown -= 1;
     }
@@ -113,10 +127,10 @@ dataMasker.uncompiledIndexToCompiledIndex = function dataMaskerUnmaskedIndexToMa
       newIndex += 1;
     }
 
-    if (newIndex >= (mask.length - 1)) {
+    if (newIndex >= mask.length) {
       countDown = -1;
     }
-  } while (countDown >= 0)
+  }
 
   if (newIndex < 0) {
     newIndex = 0;

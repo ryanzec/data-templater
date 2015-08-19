@@ -58,16 +58,17 @@ describe('data templater', function() {
       expect(dataTemplater.compiledIndexToUncompiledIndex(1, '(???) ???-????')).to.equal(0);
       expect(dataTemplater.compiledIndexToUncompiledIndex(2, '(???) ???-????')).to.equal(1);
       expect(dataTemplater.compiledIndexToUncompiledIndex(3, '(???) ???-????')).to.equal(2);
-      expect(dataTemplater.compiledIndexToUncompiledIndex(4, '(???) ???-????')).to.equal(2);
-      expect(dataTemplater.compiledIndexToUncompiledIndex(5, '(???) ???-????')).to.equal(2);
+      expect(dataTemplater.compiledIndexToUncompiledIndex(4, '(???) ???-????')).to.equal(3);
+      expect(dataTemplater.compiledIndexToUncompiledIndex(5, '(???) ???-????')).to.equal(3);
       expect(dataTemplater.compiledIndexToUncompiledIndex(6, '(???) ???-????')).to.equal(3);
       expect(dataTemplater.compiledIndexToUncompiledIndex(7, '(???) ???-????')).to.equal(4);
       expect(dataTemplater.compiledIndexToUncompiledIndex(8, '(???) ???-????')).to.equal(5);
-      expect(dataTemplater.compiledIndexToUncompiledIndex(9, '(???) ???-????')).to.equal(5);
+      expect(dataTemplater.compiledIndexToUncompiledIndex(9, '(???) ???-????')).to.equal(6);
       expect(dataTemplater.compiledIndexToUncompiledIndex(10, '(???) ???-????')).to.equal(6);
       expect(dataTemplater.compiledIndexToUncompiledIndex(11, '(???) ???-????')).to.equal(7);
       expect(dataTemplater.compiledIndexToUncompiledIndex(12, '(???) ???-????')).to.equal(8);
       expect(dataTemplater.compiledIndexToUncompiledIndex(13, '(???) ???-????')).to.equal(9);
+      expect(dataTemplater.compiledIndexToUncompiledIndex(14, '(???) ???-????')).to.equal(10);
     });
 
     it('should be able to convert uncompiled index to compiled index', function() {
@@ -81,6 +82,7 @@ describe('data templater', function() {
       expect(dataTemplater.uncompiledIndexToCompiledIndex(7, '(???) ???-????')).to.equal(11);
       expect(dataTemplater.uncompiledIndexToCompiledIndex(8, '(???) ???-????')).to.equal(12);
       expect(dataTemplater.uncompiledIndexToCompiledIndex(9, '(???) ???-????')).to.equal(13);
+      expect(dataTemplater.uncompiledIndexToCompiledIndex(10, '(???) ???-????')).to.equal(14);
     });
   });
 });
